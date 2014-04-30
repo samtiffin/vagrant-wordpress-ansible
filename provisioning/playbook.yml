@@ -1,0 +1,16 @@
+- hosts: all
+  sudo: true
+
+  tasks:
+    - name: Update the apt index
+      apt: update_cache=yes
+
+    - name: Perform apt-get upgrade
+      apt: upgrade=yes
+
+    - name: Install the en-GB locale
+      apt: pkg=language-pack-en state=present
+
+    - name: Fetch a dummy repo to check GitHub access
+      git: repo=https://github.com/samtiffin/dummy-repo.git dest=~/dummy accept_hostkey=yes
+
